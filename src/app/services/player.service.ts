@@ -6,6 +6,8 @@ import { Song } from '../models/song';
 })
 export class PlayerService {
 
+  // https://codereview.stackexchange.com/questions/144052/audio-player-in-angular-2
+  
   playlist: Song[];
   cursor = -1;
 

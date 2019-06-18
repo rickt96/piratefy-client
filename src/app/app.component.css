@@ -1,4 +1,10 @@
 .body {
-    margin: 10px;
-    background-color: lightblue;
+    margin: 5px;
+}
+
+.player{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
