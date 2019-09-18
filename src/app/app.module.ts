@@ -21,6 +21,8 @@ import {
 import { SongsListComponent } from './components/songs-list/songs-list.component';
 import { AlbumsListComponent } from './components/albums-list/albums-list.component';
 import { ArtistsListComponent } from './components/artists-list/artists-list.component';
+import { SongsService } from './services/songs.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -35,7 +37,7 @@ import { ArtistsListComponent } from './components/artists-list/artists-list.com
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
+    HttpClientModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
@@ -61,7 +63,9 @@ import { ArtistsListComponent } from './components/artists-list/artists-list.com
     MatInputModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [
+    SongsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
