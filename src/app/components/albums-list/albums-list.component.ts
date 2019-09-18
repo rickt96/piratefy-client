@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import {MatPaginator} from '@angular/material/paginator';
+import { AlbumsService } from 'src/app/services/albums.service';
+import { Album } from 'src/app/models/album';
 
 @Component({
   selector: 'app-albums-list',
@@ -11,18 +13,34 @@ export class AlbumsListComponent implements OnInit {
 
   // https://stackoverflow.com/questions/47775608/angular-material-paginator-is-not-working
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Album>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+
+  constructor(private albumsService: AlbumsService) { 
+    this.loadAlbums();
+  }
+
+
+  loadAlbums(){
+    this.albumsService.getAll().subscribe(data => {
+      this.dataSource = new MatTableDataSource<Album>(data);
+      this.dataSource.paginator = this.paginator;
+    });
+    //this.albumsService.getTest();
+  }
+
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    //this.dataSource.paginator = this.paginator;
   }
 
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 }
+
+
 
 export interface PeriodicElement {
   name: string;

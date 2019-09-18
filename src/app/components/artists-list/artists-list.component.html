@@ -1,3 +1,14 @@
 <p>
   artists-list works!
 </p>
+
+<mat-list>
+
+  <h3 mat-subheader>Artists</h3>
+  <mat-list-item *ngFor="let d of data | async">
+    <mat-icon mat-list-icon>folder</mat-icon>
+    <h4 mat-line>{{d.title}}</h4>
+    <p mat-line> ahh </p>
+  </mat-list-item>
+
+</mat-list>

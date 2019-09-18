@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Album } from 'src/app/models/album';
+import { AlbumsService } from 'src/app/services/albums.service';
 
 @Component({
   selector: 'app-artists-list',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtistsListComponent implements OnInit {
 
-  constructor() { }
+  data: Album[] = [];
 
+  constructor( private albumService: AlbumsService ) { }
+
+  load(){
+    this.data = this.albumService.getAll();
+  }
   ngOnInit() {
   }
 
