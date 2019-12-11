@@ -13,7 +13,12 @@ export class SongsService {
   } 
 
 
-  getSong(id): Observable<Song> {
-    return this.http.get(environment.api + "songs/"+id);
-} 
+  getAll(page=0, limit=15): Observable<Song[]> {
+    return this.http.get<Song[]>(environment.api + "songs?page="+page+"&limit="+limit);
+  } 
+
+
+  getById(id): Observable<Song> {
+    return this.http.get<Song>(environment.api + "songs/"+id);
+  } 
 }

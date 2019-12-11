@@ -13,28 +13,19 @@ export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { }
 
-/*   getAll() : Observable<Album[]> {
-    return this.httpClient.get<Album[]>(environment.api + "albums");
-  } */
+  getAll(page=0, limit=20): Observable<Album[]> {
+    return this.httpClient.get<Album[]>(environment.api + 'albums?page='+page+"&limit="+limit);
+  }
 
-  getAll(): any {
-    this.httpClient.get<any>('http://127.0.0.1:5000/api/albums').subscribe(result => {
-      console.log(result);
-      for (let item of result){
-        this.data.push({
-          albumId: item["ALBUM_ID"],
-          artistId: item["ARTIST_ID"],
-          artist: null,
-          coverUrl: item["COVER_URL"],
-          title: item["TITLE"],
-          year: item["YEAR"]
-        });
 
-        return this.data;
-      }
-    }, error => {
-      console.log("errore");
-    });
+  getById(id): Observable<Album> {
+    return this.httpClient.get<Album>(environment.api + 'albums/'+id);
+  }
+
+
+  getByArtist(artistId): Observable<Album[]> {
+    //TODO
+    return null;
   }
 
 

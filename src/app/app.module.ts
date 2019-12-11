@@ -25,6 +25,12 @@ import { SongsListComponent } from './components/songs-list/songs-list.component
 import { AlbumsListComponent } from './components/albums-list/albums-list.component';
 import { ArtistsListComponent } from './components/artists-list/artists-list.component';
 import { SongsService } from './services/songs.service';
+import { ImageComponent } from './components/image/image.component';
+import { SearchComponent } from './components/search/search.component';
+import { MinuteSecondsPipe } from './pipes/minute-seconds.pipe';
+import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
+import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
+import { SongDetailComponent } from './components/song-detail/song-detail.component';
 
 
 
@@ -33,7 +39,13 @@ import { SongsService } from './services/songs.service';
     AppComponent,
     SongsListComponent,
     AlbumsListComponent,
-    ArtistsListComponent
+    ArtistsListComponent,
+    ImageComponent,
+    SearchComponent,
+    MinuteSecondsPipe,
+    ArtistDetailComponent,
+    AlbumDetailComponent,
+    SongDetailComponent
   ],
   imports: [
     BrowserModule,

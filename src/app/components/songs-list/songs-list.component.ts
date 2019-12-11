@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SongsService } from 'src/app/services/songs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-songs-list',
@@ -8,10 +9,37 @@ import { SongsService } from 'src/app/services/songs.service';
 })
 export class SongsListComponent implements OnInit {
 
-  constructor(private songService: SongsService) { }
+  displayedColumns: string[] = ['ARTIST_COVER', 'TITLE', 'ALBUM_NAME', 'ARTIST_NAME', 'LENGTH', 'FUNCTIONS'];
+  dataSource = [];
+  page = 0;
+  loading = false;
+
+
+  constructor(
+    private songService: SongsService,
+    private router: Router
+    ) { }
+
 
   ngOnInit() {
-    this.songService.getSong(2).subscribe(data => console.log(data));
+    this.loadSongs();
   }
+
+
+  loadSongs(){
+    this.loading = true;
+    this.songService.getAll(this.page).subscribe(
+      result => {
+        this.dataSource = this.dataSource.concat(result);
+        this.page++;
+        this.loading = false;
+      },
+      error => {
+        alert("An error occourred: " + error.statusText);
+        console.log(error);
+        this.loading = false;
+      });
+  }
+
 
 }

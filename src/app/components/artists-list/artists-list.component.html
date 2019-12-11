@@ -1,14 +1,31 @@
-<p>
-  artists-list works!
-</p>
+<h1>ARTISTS LIST</h1>
 
-<mat-list>
+<search></search>
 
-  <h3 mat-subheader>Artists</h3>
-  <mat-list-item *ngFor="let d of data | async">
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <h4 mat-line>{{d.title}}</h4>
-    <p mat-line> ahh </p>
-  </mat-list-item>
+<div>
+  <table mat-table [dataSource]="dataSource">
 
-</mat-list>
+    <ng-container matColumnDef="IMAGE_URL">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let a">
+        <image [url]="a.IMAGE_URL"></image>
+      </td>
+    </ng-container>
+
+    <!-- https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor -->
+    <ng-container matColumnDef="NAME">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let a">
+        <a [routerLink]="['/artists', a.ARTIST_ID]">{{a.NAME}}</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+
+
+<button *ngIf="!loading" mat-raised-button (click)="loadArtists()" style="margin: 15px;">Load more <mat-icon>keyboard_arrow_down</mat-icon></button>
+<mat-spinner *ngIf="loading" [diameter]="30" style="margin: 15px;"></mat-spinner >
