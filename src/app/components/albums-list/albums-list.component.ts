@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 import {MatPaginator} from '@angular/material/paginator';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { Album } from 'src/app/models/album';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-albums-list',
@@ -12,31 +13,59 @@ import { Album } from 'src/app/models/album';
 export class AlbumsListComponent implements OnInit {
 
   // https://stackoverflow.com/questions/47775608/angular-material-paginator-is-not-working
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Album>();
+  displayedColumns: string[] = ['COVER_URL', 'TITLE', 'DATE', 'ARTIST_NAME'];
+  dataSource = [];
+  page = 0;
+  loading = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 
-  constructor(private albumsService: AlbumsService) { 
+  constructor(
+    private albumsService: AlbumsService,
+    private httpClient: HttpClient
+    ) { 
     this.loadAlbums();
   }
 
 
   loadAlbums(){
-    this.albumsService.getAll().subscribe(data => {
+    this.loading = true;
+   /*  this.albumsService.getAll().subscribe(data => {
       this.dataSource = new MatTableDataSource<Album>(data);
       this.dataSource.paginator = this.paginator;
     });
-    //this.albumsService.getTest();
+    //this.albumsService.getTest(); */
+    this.httpClient.get<any>('http://127.0.0.1:5000/api/albums?page='+this.page).subscribe(result => {
+      //console.log(result);
+      //this.dataSource = result;
+
+      this.dataSource = this.dataSource.concat(result);
+      
+      this.page++;
+      this.loading = false;
+      /* for (let item of result){
+        this.data.push({
+          albumId: item["ALBUM_ID"],
+          artistId: item["ARTIST_ID"],
+          artist: null,
+          coverUrl: item["COVER_URL"],
+          title: item["TITLE"],
+          year: item["YEAR"]
+        });
+
+        return this.data; */
+      })
   }
 
   ngOnInit() {
     //this.dataSource.paginator = this.paginator;
   }
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
+
+  openCover(coverUrl){
+    console.log("img");
+    window.open(coverUrl, "_blank");
   }
 }
 

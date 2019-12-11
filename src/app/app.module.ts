@@ -17,7 +17,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatGridListModule,
-  MatListModule
+  MatListModule,
+  MatProgressSpinnerModule 
 } from '@angular/material';
 
 import { SongsListComponent } from './components/songs-list/songs-list.component';
@@ -51,7 +52,8 @@ import { SongsService } from './services/songs.service';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatButtonModule,
