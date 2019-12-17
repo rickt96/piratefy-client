@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Album } from 'src/app/models/album';
+import { Song } from 'src/app/models/song';
+import { ActivatedRoute } from '@angular/router';
+import { SongsService } from 'src/app/services/songs.service';
+import { AlbumsService } from 'src/app/services/albums.service';
+import {MatSort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-album-detail',
@@ -7,9 +14,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() albumID;
+
+  album = null;
+  songs = null;
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
+  displayedColumns = ["TRACK_NO", "TITLE", "LENGTH"];
+  dataSource: MatTableDataSource<any>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private songService: SongsService,
+    private albumService: AlbumsService
+  ) {
+    this.albumID = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
+
+    this.albumService.getById(this.albumID).subscribe(result => {
+      this.album = result;
+    });
+
+    this.songService.getByAlbum(this.albumID).subscribe(result => {
+      this.songs = result;
+      this.dataSource = this.songs;
+      this.dataSource.sort = this.sort;
+    });
+
+
   }
+
 
 }

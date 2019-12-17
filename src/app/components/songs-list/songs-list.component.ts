@@ -11,8 +11,13 @@ export class SongsListComponent implements OnInit {
 
   displayedColumns: string[] = ['ARTIST_COVER', 'TITLE', 'ALBUM_NAME', 'ARTIST_NAME', 'LENGTH', 'FUNCTIONS'];
   dataSource = [];
-  page = 0;
   loading = false;
+
+  params = {
+    page: 0,
+    limit: 15,
+    query: ''
+  }
 
 
   constructor(
@@ -28,17 +33,31 @@ export class SongsListComponent implements OnInit {
 
   loadSongs(){
     this.loading = true;
-    this.songService.getAll(this.page).subscribe(
+    this.songService.getAll(this.params.page, this.params.limit, this.params.query).subscribe(
       result => {
-        this.dataSource = this.dataSource.concat(result);
-        this.page++;
-        this.loading = false;
+        if(result.length > 0){
+          this.dataSource = this.dataSource.concat(result);
+          this.params.page++;
+          this.loading = false;
+        }
+        else{
+          alert("End record");
+          this.loading = false;
+        }
       },
       error => {
         alert("An error occourred: " + error.statusText);
         console.log(error);
         this.loading = false;
-      });
+      }
+  )};
+
+
+  doSearch(event){
+    this.dataSource = [];
+    this.params.page = 0;
+    this.params.query = event;
+    this.loadSongs();
   }
 
 

@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { Artist } from 'src/app/models/artist';
 import { ArtistsService } from 'src/app/services/artists.service';
 import { Album } from 'src/app/models/album';
+import { AlbumsService } from 'src/app/services/albums.service';
 
 @Component({
   selector: 'app-artist-detail',
@@ -18,7 +19,8 @@ export class ArtistDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private artistService: ArtistsService
+    private artistService: ArtistsService,
+    private albumService: AlbumsService
   ) {
     this.artistID = this.route.snapshot.paramMap.get('id');
   }
@@ -27,9 +29,13 @@ export class ArtistDetailComponent implements OnInit {
 
     this.artistService.getById(this.artistID).subscribe(result => {
       this.artist = result;
-
-      
     });
+
+    this.albumService.getByArtist(this.artistID).subscribe(result => {
+      this.albums = result;
+    });
+
+
   }
 
 }

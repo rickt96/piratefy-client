@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from  '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatMenuModule,
@@ -18,7 +18,7 @@ import {
   MatInputModule,
   MatGridListModule,
   MatListModule,
-  MatProgressSpinnerModule 
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { SongsListComponent } from './components/songs-list/songs-list.component';
@@ -52,6 +52,7 @@ import { SongDetailComponent } from './components/song-detail/song-detail.compon
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
 
     MatButtonModule,
     MatMenuModule,

@@ -1,4 +1,3 @@
 <div style="display: flex; align-items: center; justify-content: center;">
-    <img [src]="url" style="height: 30px; width: 30px;" (click)="openCover()"/>
-    <!-- TODO gestione errore caricamento -->
+    <img [src]="url" (click)="openCover()" (error)="updateUrl($event)" [height]="dimension" [width]="dimension"/>
 </div>

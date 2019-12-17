@@ -1,6 +1,6 @@
 <div>
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Search...">
-    <mat-icon matSuffix>search</mat-icon>
+    <input type="text" matInput placeholder="Search..." [(ngModel)]="pattern">
+    <mat-icon matSuffix (click)="doSearch()">search</mat-icon>
   </mat-form-field>
 </div>

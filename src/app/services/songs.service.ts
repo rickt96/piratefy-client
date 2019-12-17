@@ -9,16 +9,21 @@ import { environment } from 'src/environments/environment';
 })
 export class SongsService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private httpClient: HttpClient) { 
   } 
 
 
-  getAll(page=0, limit=15): Observable<Song[]> {
-    return this.http.get<Song[]>(environment.api + "songs?page="+page+"&limit="+limit);
+  getAll(page=0, limit=15, q=''): Observable<Song[]> {
+    return this.httpClient.get<Song[]>(environment.api + "songs?page="+page+"&limit="+limit+"&query="+q);
   } 
 
 
   getById(id): Observable<Song> {
-    return this.http.get<Song>(environment.api + "songs/"+id);
-  } 
+    return this.httpClient.get<Song>(environment.api + "songs/"+id);
+  }
+
+
+  getByAlbum(albumId): Observable<Song[]> {
+    return this.httpClient.get<Song[]>(environment.api + 'songs/byalbum/'+albumId);
+  }
 }

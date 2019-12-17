@@ -12,9 +12,13 @@ export class ArtistsListComponent implements OnInit {
 
   displayedColumns: string[] = ['IMAGE_URL', 'NAME'];
   dataSource = [];
-  page = 0;
   loading = false;
 
+  params = {
+    page: 0,
+    limit: 15,
+    query: ''
+  }
 
   constructor(
     private artistsService: ArtistsService
@@ -28,17 +32,31 @@ export class ArtistsListComponent implements OnInit {
 
   loadArtists(){
     this.loading = true;
-    this.artistsService.getAll(this.page).subscribe(
+    this.artistsService.getAll(this.params.page, this.params.limit, this.params.query).subscribe(
       result => {
-        this.dataSource = this.dataSource.concat(result);
-        this.page++;
-        this.loading = false;
+        if(result.length > 0){
+          this.dataSource = this.dataSource.concat(result);
+          this.params.page++;
+          this.loading = false;
+        }
+        else{
+          alert("End record");
+          this.loading = false;
+        }
       },
       error => {
         alert("An error occourred: " + error.statusText);
         console.log(error);
         this.loading = false;
-      });
+      }
+  )};
+
+
+  doSearch(event){
+    this.dataSource = [];
+    this.params.page = 0;
+    this.params.query = event;
+    this.loadArtists();
   }
 
   
