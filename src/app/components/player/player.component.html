@@ -1,0 +1,33 @@
+<div style="background-color: gray; display: flex; flex-direction: row; align-items: center;" >
+
+  <button mat-icon-button color="primary" (click)="prev()">
+    <mat-icon>skip_previous</mat-icon>
+  </button>
+  <button mat-icon-button color="primary" (click)="toggle()">
+    <mat-icon>{{ playPauseIcon }}</mat-icon>
+  </button>
+
+
+
+  <button mat-icon-button color="primary" (click)="next()">
+    <mat-icon>skip_next</mat-icon>
+  </button>
+
+
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+
+  <span>{{ time }}</span>
+
+  <!-- 
+<audio id="audioMain" src="" preload="auto" autoplay
+            ontimeupdate="Player.updateProgress()"
+            onended="Player.next()">
+        </audio>
+
+
+  -->
+  <audio #audioOption preload="auto" (ended)="next()" (timeupdate)="updateProgress()">
+  </audio>
+
+  <span *ngFor="let s of playlist">{{s.TITLE}}</span>
+</div>

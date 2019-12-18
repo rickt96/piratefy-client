@@ -18,7 +18,8 @@ import {
   MatInputModule,
   MatGridListModule,
   MatListModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { SongsListComponent } from './components/songs-list/songs-list.component';
@@ -31,6 +32,7 @@ import { MinuteSecondsPipe } from './pipes/minute-seconds.pipe';
 import { ArtistDetailComponent } from './components/artist-detail/artist-detail.component';
 import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 import { SongDetailComponent } from './components/song-detail/song-detail.component';
+import { PlayerComponent } from './components/player/player.component';
 
 
 
@@ -45,7 +47,8 @@ import { SongDetailComponent } from './components/song-detail/song-detail.compon
     MinuteSecondsPipe,
     ArtistDetailComponent,
     AlbumDetailComponent,
-    SongDetailComponent
+    SongDetailComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { SongDetailComponent } from './components/song-detail/song-detail.compon
     MatInputModule,
     MatGridListModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,

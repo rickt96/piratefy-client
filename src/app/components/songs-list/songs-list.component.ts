@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SongsService } from 'src/app/services/songs.service';
 import { Router } from '@angular/router';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-songs-list',
@@ -22,7 +23,8 @@ export class SongsListComponent implements OnInit {
 
   constructor(
     private songService: SongsService,
-    private router: Router
+    private router: Router,
+    private playerService: PlayerService
     ) { }
 
 
@@ -58,6 +60,11 @@ export class SongsListComponent implements OnInit {
     this.params.page = 0;
     this.params.query = event;
     this.loadSongs();
+  }
+
+
+  play(song){
+    this.playerService.play(song);
   }
 
 
