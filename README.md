@@ -6,7 +6,7 @@ I dati vengono forniti dalle API della controparte server (vedi il progetto pira
 
 ## Configurazione ambiente di sviluppo
  - Istallare Node.js
- - Istallare Angular  
+ - Istallare Angular
  `$ npm install -g @angular/cli`
  - Aprire la soluzione
  - Aggiornare i pacchetti node
@@ -14,5 +14,5 @@ I dati vengono forniti dalle API della controparte server (vedi il progetto pira
  - Lanciare la soluzione
  `$ ng serve`
 
-## Documentazioni, troubleshoot ereference
+## Documentazioni, troubleshoot e reference
 https://stackoverflow.com/questions/47236963/no-provider-for-httpclient
