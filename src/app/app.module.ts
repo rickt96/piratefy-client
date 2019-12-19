@@ -19,7 +19,8 @@ import {
   MatGridListModule,
   MatListModule,
   MatProgressSpinnerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSliderModule
 } from '@angular/material';
 
 import { SongsListComponent } from './components/songs-list/songs-list.component';
@@ -70,7 +71,8 @@ import { PlayerComponent } from './components/player/player.component';
     MatGridListModule,
     MatListModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSliderModule
   ],
   exports: [
     MatButtonModule,

@@ -41,7 +41,10 @@ export class AlbumDetailComponent implements OnInit {
     this.songService.getByAlbum(this.albumID).subscribe(result => {
       this.songs = result;
       this.dataSource = this.songs;
-      this.dataSource.sort = this.sort;
+      setTimeout(() => {
+        this.dataSource.sort = this.sort;
+      });
+      
     });
 
 

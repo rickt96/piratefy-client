@@ -8,14 +8,4 @@ import { PlayerService } from './services/player.service';
 })
 export class AppComponent {
   title = 'piratefy';
-
-  constructor(
-    private platerService: PlayerService
-  ){
-
-  }
-
-  test(){
-    this.platerService.toggle();
-  }
 }

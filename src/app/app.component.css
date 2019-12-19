@@ -1,10 +1,6 @@
 .body {
     margin: 5px;
+    margin-bottom: 100px;
 }
 
-.player{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
+

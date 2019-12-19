@@ -68,4 +68,9 @@ export class SongsListComponent implements OnInit {
   }
 
 
+  add(song){
+    this.playerService.addToQueue(song);
+  }
+
+
 }

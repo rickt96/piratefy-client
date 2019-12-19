@@ -1,0 +1,3 @@
+ricerca album-list
+ui visualizzazione dettaglio artisti e album
+visualizzazione e modifica coda di riproduzione
