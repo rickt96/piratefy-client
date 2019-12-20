@@ -14,8 +14,10 @@ export class ArtistDetailComponent implements OnInit {
 
   @Input() artistID;
 
-  artist: Artist;
-  albums: Album[];
+  displayedColumns = ["COVER", "TITLE", "DATE"];
+  dataSource = [];
+  artist = null;
+  albums = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +35,7 @@ export class ArtistDetailComponent implements OnInit {
 
     this.albumService.getByArtist(this.artistID).subscribe(result => {
       this.albums = result;
+      this.dataSource = this.albums;
     });
 
 

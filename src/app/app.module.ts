@@ -20,7 +20,8 @@ import {
   MatListModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatSliderModule
+  MatSliderModule,
+  MatDialogModule
 } from '@angular/material';
 
 import { SongsListComponent } from './components/songs-list/songs-list.component';
@@ -34,6 +35,8 @@ import { ArtistDetailComponent } from './components/artist-detail/artist-detail.
 import { AlbumDetailComponent } from './components/album-detail/album-detail.component';
 import { SongDetailComponent } from './components/song-detail/song-detail.component';
 import { PlayerComponent } from './components/player/player.component';
+import { SongActionsComponent } from './components/song-actions/song-actions.component';
+import { QueueDetailComponent } from './components/queue-detail/queue-detail.component';
 
 
 
@@ -49,7 +52,9 @@ import { PlayerComponent } from './components/player/player.component';
     ArtistDetailComponent,
     AlbumDetailComponent,
     SongDetailComponent,
-    PlayerComponent
+    PlayerComponent,
+    SongActionsComponent,
+    QueueDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,8 @@ import { PlayerComponent } from './components/player/player.component';
     MatListModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDialogModule 
   ],
   exports: [
     MatButtonModule,
@@ -91,6 +97,9 @@ import { PlayerComponent } from './components/player/player.component';
   providers: [
     HttpClientModule,
     SongsService
+  ],
+  entryComponents:[
+    QueueDetailComponent
   ],
   bootstrap: [AppComponent]
 })

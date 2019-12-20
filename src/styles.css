@@ -6,3 +6,9 @@
 .pointer{
     cursor: pointer;
 }
+
+
+h1 {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    font-weight: normal;
+}

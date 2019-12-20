@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material';
+import { QueueDetailComponent } from '../queue-detail/queue-detail.component';
 
 @Component({
   selector: 'player',
@@ -34,7 +36,17 @@ export class PlayerComponent implements OnInit {
 
   subscription: Subscription;
   
-  constructor(private playerService: PlayerService) { 
+  constructor(
+    private playerService: PlayerService,
+    public dialog: MatDialog
+    ) { 
+
+    //find playlist in localstorage
+    if(localStorage.getItem("queue")){
+      this.playlist = JSON.parse(localStorage.getItem("queue"));
+      console.log("playlist found")
+    }
+    
     //subscribe to service controller
     this.subscription = this.playerService.getCommand().subscribe(cmd => {
       if (cmd) {
@@ -105,6 +117,7 @@ export class PlayerComponent implements OnInit {
 
       case "add":
         this.playlist.push(cmd.value);
+        localStorage.setItem("queue", JSON.stringify(this.playlist));
         break;
 
       case "next":
@@ -159,6 +172,20 @@ export class PlayerComponent implements OnInit {
     this.time = Math.floor(this.progress); 
     //console.log(ct);
     }
+
+
+    showQueue(): void {
+      const dialogRef = this.dialog.open(QueueDetailComponent, {
+        width: '500px',
+        data: {playlist: this.playlist}
+      });
   
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        if(result){
+          this.playlist = result;
+        }
+      });
+    } 
 
 }

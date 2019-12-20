@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Album } from 'src/app/models/album';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { ArtistsService } from 'src/app/services/artists.service';
@@ -21,7 +22,8 @@ export class ArtistsListComponent implements OnInit {
   }
 
   constructor(
-    private artistsService: ArtistsService
+    private artistsService: ArtistsService,
+    private router: Router
     ) { }
 
 
@@ -35,6 +37,10 @@ export class ArtistsListComponent implements OnInit {
     this.artistsService.getAll(this.params.page, this.params.limit, this.params.query).subscribe(
       result => {
         if(result.length > 0){
+
+          if(result.length == 1){
+            this.router.navigate(['/artists', result[0].ARTIST_ID]);
+          }
           this.dataSource = this.dataSource.concat(result);
           this.params.page++;
           this.loading = false;

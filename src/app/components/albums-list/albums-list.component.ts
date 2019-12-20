@@ -15,9 +15,13 @@ export class AlbumsListComponent implements OnInit {
   // https://stackoverflow.com/questions/47775608/angular-material-paginator-is-not-working
   displayedColumns: string[] = ['COVER_URL', 'TITLE', 'DATE', 'ARTIST_NAME'];
   dataSource = [];
-  page = 0;
   loading = false;
 
+  params = {
+    page: 0,
+    limit: 15,
+    query: ''
+  }
 
   constructor(
     private albumsService: AlbumsService
@@ -31,17 +35,30 @@ export class AlbumsListComponent implements OnInit {
 
   loadAlbums(){
     this.loading = true;
-    this.albumsService.getAll(this.page).subscribe(
+    this.albumsService.getAll(this.params.page, this.params.limit, this.params.query).subscribe(
       result => {
-        this.dataSource = this.dataSource.concat(result);
-        this.page++;
-        this.loading = false;
+        if(result.length > 0){
+          this.dataSource = this.dataSource.concat(result);
+          this.params.page++;
+          this.loading = false;
+        }
+        else{
+          alert("End record");
+          this.loading = false;
+        }
       },
       error => {
         alert("An error occourred: " + error.statusText);
         console.log(error);
         this.loading = false;
-      });
+      }
+  )};
+
+  doSearch(event){
+    this.dataSource = [];
+    this.params.page = 0;
+    this.params.query = event;
+    this.loadAlbums();
   }
 
   

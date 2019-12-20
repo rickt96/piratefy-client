@@ -1,6 +1,6 @@
 <h1>Album list</h1>
 
-<search-box></search-box>
+<search-box (search)="doSearch($event)"></search-box>
 
 <div>
   <table mat-table [dataSource]="dataSource">

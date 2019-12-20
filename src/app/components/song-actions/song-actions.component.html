@@ -1,0 +1,11 @@
+<div style="display: flex; justify-content: center; align-content: center;">
+
+  <button *ngIf="showPlay" mat-icon-button color="primary" (click)="play(song)">
+    <mat-icon>play_arrow</mat-icon>
+  </button>
+  
+  <button *ngIf="showAdd" mat-icon-button color="primary" (click)="add(song)">
+    <mat-icon>playlist_add</mat-icon>
+  </button>
+ 
+</div>

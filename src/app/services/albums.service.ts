@@ -13,8 +13,8 @@ export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(page=0, limit=20): Observable<any[]> {
-    return this.httpClient.get<any[]>(environment.api + 'albums?page='+page+"&limit="+limit);
+  getAll(page=0, limit=20, query=''): Observable<any[]> {
+    return this.httpClient.get<any[]>(environment.api + 'albums?page='+page+"&limit="+limit+"&query="+query);
   }
 
 

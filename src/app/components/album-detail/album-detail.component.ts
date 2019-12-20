@@ -21,7 +21,7 @@ export class AlbumDetailComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
-  displayedColumns = ["TRACK_NO", "TITLE", "LENGTH"];
+  displayedColumns = ["TRACK_NO", "TITLE", "LENGTH", "ACTIONS"];
   dataSource: MatTableDataSource<any>;
 
   constructor(
