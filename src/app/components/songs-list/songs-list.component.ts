@@ -10,7 +10,7 @@ import { PlayerService } from 'src/app/services/player.service';
 })
 export class SongsListComponent implements OnInit {
 
-  displayedColumns: string[] = ['ARTIST_COVER', 'TITLE', 'ALBUM_NAME', 'ARTIST_NAME', 'LENGTH', 'FUNCTIONS'];
+  displayedColumns: string[] = ['ARTIST_COVER', 'TITLE', 'ARTIST_NAME', 'ALBUM_NAME', 'LENGTH', 'FUNCTIONS'];
   dataSource = [];
   loading = false;
 

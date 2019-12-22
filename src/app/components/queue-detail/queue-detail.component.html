@@ -1,17 +1,40 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let movie of movies" cdkDrag>
-    {{movie}}
-    <button mat-icon-button color="primary">
-      <mat-icon>keyboard_arrow_down</mat-icon>
-    </button>
+<!--  -->
 
-    <button mat-icon-button color="primary">
-      <mat-icon>keyboard_arrow_up</mat-icon>
-    </button>
 
-    <button mat-icon-button color="primary">
-      <mat-icon>delete</mat-icon>
-    </button>
-  
+<h1 mat-dialog-title>Current playlist</h1>
+<mat-dialog-content> <!-- instead of your <div>  or use <div mat-dialog-content> -->
+  <div *ngFor="let song of playlist; let i = index" class="example-box" >
+    {{song.TITLE}}
+    <div>
+      <mat-icon class="pointer" (click)="moveDown(i)">keyboard_arrow_down</mat-icon>
+      <mat-icon class="pointer" (click)="moveUp(i)">keyboard_arrow_up</mat-icon>
+      <mat-icon class="pointer" (click)="delete(i)">clear</mat-icon>
+    </div>
+    
   </div>
+ 
+</mat-dialog-content> <!-- instead of your </div> -->
+<div mat-dialog-actions>
+  <button mat-button (click)="onAbort()">Abort</button>
+  <button mat-button cdkFocusInitial (click)="onSubmit()">Ok</button>
 </div>
+
+<!-- 
+
+ <div class="example-list">
+    <div class="example-box" *ngFor="let movie of movies">
+      {{movie}}
+      <button mat-icon-button color="primary">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+  
+      <button mat-icon-button color="primary">
+        
+      </button>
+  
+      <button mat-icon-button color="primary">
+        <mat-icon>clear</mat-icon>
+      </button>
+    
+    </div>
+  </div> -->

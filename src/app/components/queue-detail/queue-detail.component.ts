@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-queue-detail',
@@ -7,21 +8,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueueDetailComponent implements OnInit {
 
-  constructor() { }
+  playlist = [];
+
+  constructor(
+    public dialogRef: MatDialogRef<QueueDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data
+  ) {
+
+    this.playlist = (data.playlist) ? data.playlist : [];
+    console.log(data)
+
+  }
 
   ngOnInit() {
   }
 
+  moveDown(index){
+    if(index == this.playlist.length-1){
+      return;
+    } else {
 
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
-  ];
+      let current_item = this.playlist[index];
+      let tmp_item = this.playlist[index+1];
+
+      this.playlist[index+1] = current_item;
+      this.playlist[index] = tmp_item;
+    }
+  }
+
+  
+  moveUp(index){
+    if(index == 0){
+      return;
+    } else {
+
+      let current_item = this.playlist[index];
+      let tmp_item = this.playlist[index-1];
+
+      this.playlist[index-1] = current_item;
+      this.playlist[index] = tmp_item;
+    }
+  }
+
+  delete(index){
+    this.playlist.splice(index, 1);
+  }
+
+
+
+  onAbort(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmit(): void {
+    this.dialogRef.close(this.playlist);
+  }
+
   
 }

@@ -14,7 +14,7 @@
 
     <!-- https://stackoverflow.com/questions/36101756/angular2-routing-with-hashtag-to-page-anchor -->
     <ng-container matColumnDef="TITLE">
-      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <th mat-header-cell *matHeaderCellDef> Album name </th>
       <td mat-cell *matCellDef="let a">
         <a [routerLink]="['/albums', a.ALBUM_ID]">{{a.TITLE}}</a>
       </td>

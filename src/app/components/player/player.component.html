@@ -23,7 +23,7 @@
   
     <span class="time">{{ (time | minuteSeconds) +"&#x2f;"+ ((playlist[cursor]) ? (playlist[cursor].LENGTH | minuteSeconds) : "00:00") }}</span>
 
-    <button mat-icon-button color="primary" (click)="showQueue()" [disabled]="true">
+    <button mat-icon-button color="primary" (click)="showQueue()">
       <mat-icon>list</mat-icon>
     </button>
 

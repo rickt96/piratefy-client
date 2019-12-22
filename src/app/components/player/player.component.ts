@@ -162,28 +162,29 @@ export class PlayerComponent implements OnInit {
    * ad ogni tick della progress bar aggiorna il timer
    */
   updateProgress(){
-
     this.progress = this.audio.nativeElement.currentTime; //(this.audio.nativeElement.currentTime / this.audio.nativeElement.duration) * 100;
-
-    //let ct = Number(this.audio.nativeElement.currentTime);
-    /* let s = Math.floor(ct % 60);
-    let m = Math.floor((ct / 60) % 60); */
-    //this.time = m+":"+s+"/";
     this.time = Math.floor(this.progress); 
-    //console.log(ct);
-    }
+  }
 
 
     showQueue(): void {
       const dialogRef = this.dialog.open(QueueDetailComponent, {
-        width: '500px',
-        data: {playlist: this.playlist}
+        width: '95%',
+        data: {playlist: this.playlist},
+        disableClose: true
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+
         if(result){
+          console.log(result);
           this.playlist = result;
+
+          this.audio.nativeElement.pause();
+          this.cursor = -1;
+          
+        } else {
+          console.log("niente")
         }
       });
     } 

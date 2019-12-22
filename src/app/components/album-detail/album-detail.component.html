@@ -1,12 +1,10 @@
 <h1>Album detail</h1>
 
+<h2 style="margin: 0px;">{{ (album && album.TITLE) ? album.TITLE : 'No album name' }}</h2>
+
+
 <image *ngIf="album" [url]="album.COVER_URL" [dimension]="300"></image>
 
-<p>
-  {{ album | json }}
-</p>
-
-<br>
 
 <div>
   <table mat-table [dataSource]="dataSource" matSort>
