@@ -7,21 +7,17 @@
 
 
 <div>
-  <table mat-table [dataSource]="dataSource" matSort>
-  
-    <!-- Name Column -->
+  <table mat-table [dataSource]="dataSource" matSort matSortActive="TRACK_NO" matSortDirection="asc">
     <ng-container matColumnDef="TRACK_NO">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Track </th>
       <td mat-cell *matCellDef="let s"> {{s.TRACK_NO}} </td>
     </ng-container>
-  
-    <!-- Weight Column -->
+    
     <ng-container matColumnDef="TITLE">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
       <td mat-cell *matCellDef="let s"> {{s.TITLE}} </td>
     </ng-container>
-  
-    <!-- Symbol Column -->
+
     <ng-container matColumnDef="LENGTH">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Length </th>
       <td mat-cell *matCellDef="let s"> {{s.LENGTH | minuteSeconds}} </td>

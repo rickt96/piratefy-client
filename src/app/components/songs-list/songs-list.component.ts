@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SongsService } from 'src/app/services/songs.service';
 import { Router } from '@angular/router';
 import { PlayerService } from 'src/app/services/player.service';
+import { Song } from 'src/app/models/song';
 
 @Component({
   selector: 'app-songs-list',
@@ -11,7 +12,7 @@ import { PlayerService } from 'src/app/services/player.service';
 export class SongsListComponent implements OnInit {
 
   displayedColumns: string[] = ['ARTIST_COVER', 'TITLE', 'ARTIST_NAME', 'ALBUM_NAME', 'LENGTH', 'FUNCTIONS'];
-  dataSource = [];
+  dataSource: Song[] = [];
   loading = false;
 
   params = {

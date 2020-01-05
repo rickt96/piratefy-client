@@ -16,13 +16,13 @@ export class AlbumDetailComponent implements OnInit {
 
   @Input() albumID;
 
-  album = null;
-  songs = null;
+  album: Album = null;
+  songs: Song[] = null;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   displayedColumns = ["TRACK_NO", "TITLE", "LENGTH", "ACTIONS"];
-  dataSource: MatTableDataSource<any>;
+  dataSource;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,10 +40,11 @@ export class AlbumDetailComponent implements OnInit {
 
     this.songService.getByAlbum(this.albumID).subscribe(result => {
       this.songs = result;
-      this.dataSource = this.songs;
-      setTimeout(() => {
-        this.dataSource.sort = this.sort;
-      });
+      this.dataSource = new MatTableDataSource(this.songs);
+      this.dataSource.sort = this.sort;
+      /* setTimeout(() => {
+        
+      }); */
       
     });
 

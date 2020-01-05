@@ -13,18 +13,18 @@ export class AlbumsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(page=0, limit=20, query=''): Observable<any[]> {
-    return this.httpClient.get<any[]>(environment.api + 'albums?page='+page+"&limit="+limit+"&query="+query);
+  getAll(page=0, limit=20, query=''): Observable<Album[]> {
+    return this.httpClient.get<Album[]>(environment.api + 'albums?page='+page+"&limit="+limit+"&query="+query);
   }
 
 
-  getById(id): Observable<any> {
-    return this.httpClient.get<any>(environment.api + 'albums/'+id);
+  getById(id): Observable<Album> {
+    return this.httpClient.get<Album>(environment.api + 'albums/'+id);
   }
 
 
-  getByArtist(artistId): Observable<any[]> {
-    return this.httpClient.get<any[]>(environment.api + 'albums/byartist/'+artistId);
+  getByArtist(artistId): Observable<Album[]> {
+    return this.httpClient.get<Album[]>(environment.api + 'albums/byartist/'+artistId);
   }
 
 

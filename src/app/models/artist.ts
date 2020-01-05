@@ -1,8 +1,9 @@
 export interface Artist {
 
-    artistId?: number;
-    name?: string;
-    imageUrl?: string;
-    biography?: string;
+    ARTIST_ID?: number;
+    BIOGRAPHY?: string;
+    IMAGE_URL?: string;
+    NAME?: string;
+    SPOTIFY_ID?: string;
 
 }

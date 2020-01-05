@@ -14,7 +14,7 @@ export class AlbumsListComponent implements OnInit {
 
   // https://stackoverflow.com/questions/47775608/angular-material-paginator-is-not-working
   displayedColumns: string[] = ['COVER_URL', 'TITLE', 'ARTIST_NAME', 'DATE'];
-  dataSource = [];
+  dataSource: Album[] = [];
   loading = false;
 
   params = {

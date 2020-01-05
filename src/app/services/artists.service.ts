@@ -12,8 +12,8 @@ export class ArtistsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAll(page=0, limit=20, query=''): Observable<any[]> {
-    return this.httpClient.get<any[]>(environment.api + 'artists?page='+page+"&limit="+limit+"&query="+query);
+  public getAll(page=0, limit=20, query=''): Observable<Artist[]> {
+    return this.httpClient.get<Artist[]>(environment.api + 'artists?page='+page+"&limit="+limit+"&query="+query);
   }
 
 

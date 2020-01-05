@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Album } from 'src/app/models/album';
+import { Artist } from 'src/app/models/artist';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { ArtistsService } from 'src/app/services/artists.service';
 
@@ -12,7 +12,7 @@ import { ArtistsService } from 'src/app/services/artists.service';
 export class ArtistsListComponent implements OnInit {
 
   displayedColumns: string[] = ['IMAGE_URL', 'NAME'];
-  dataSource = [];
+  dataSource: Artist[] = [];
   loading = false;
 
   params = {
